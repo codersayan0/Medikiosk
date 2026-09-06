@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+pymongo
+python-dotenv
+pydantic-settings
+
+passlib[bcrypt]
+python-jose[cryptography]
+email-validator
+passlib==1.7.4
+bcrypt==4.0.1
+
+google-genai
+python-multipart
+pypdf
+Pillow
+pytesseract

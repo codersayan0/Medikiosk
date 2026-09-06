@@ -1,0 +1,319 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+/* ============================================================
+   MEDIKIOSK DESIGN TOKENS
+   Three themes share one token contract: --mx-*
+   Theme is switched via [data-theme="light|dark|warm"] on <html>
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --mx-bg: #F6F8F7;
+  --mx-bg-canvas: #EEF2F0;
+  --mx-surface: #FFFFFF;
+  --mx-surface-raised: #FFFFFF;
+  --mx-surface-sunken: #F1F5F3;
+
+  /* Text */
+  --mx-ink: #0E2233;
+  --mx-ink-soft: #3F5464;
+  --mx-ink-muted: #6E8091;
+  --mx-ink-inverse: #F7FAF9;
+
+  /* Borders */
+  --mx-border: #E1E8E4;
+  --mx-border-strong: #C9D5CE;
+
+  /* Brand */
+  --mx-green: #0E8A5F;
+  --mx-green-strong: #096B49;
+  --mx-green-soft: #E3F3EC;
+  --mx-purple: #6E4FD1;
+  --mx-purple-soft: #EFE9FB;
+  --mx-blue: #2A6FE0;
+  --mx-blue-soft: #E7EFFD;
+
+  /* Status */
+  --mx-danger: #D3453B;
+  --mx-danger-soft: #FBEAE8;
+  --mx-warning: #B9791B;
+  --mx-warning-soft: #FBF1DF;
+  --mx-success: #0E8A5F;
+  --mx-success-soft: #E3F3EC;
+
+  /* Elevation */
+  --mx-shadow-sm: 0 1px 2px rgba(14, 34, 51, 0.06);
+  --mx-shadow-md: 0 4px 16px rgba(14, 34, 51, 0.08);
+  --mx-shadow-lg: 0 12px 32px rgba(14, 34, 51, 0.12);
+
+  --mx-focus-ring: #2A6FE0;
+
+  /* How much flat black tint sits over the Hero background video */
+  --mx-hero-video-tint: 0.18;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --mx-bg: #0B1420;
+  --mx-bg-canvas: #0E1826;
+  --mx-surface: #121F2E;
+  --mx-surface-raised: #16273A;
+  --mx-surface-sunken: #0C1826;
+
+  --mx-ink: #EAF1F3;
+  --mx-ink-soft: #B7C6D1;
+  --mx-ink-muted: #7E93A3;
+  --mx-ink-inverse: #0E2233;
+
+  --mx-border: #223345;
+  --mx-border-strong: #2E475D;
+
+  --mx-green: #2DBE8B;
+  --mx-green-strong: #43D6A2;
+  --mx-green-soft: #133428;
+  --mx-purple: #A48CF2;
+  --mx-purple-soft: #241C3F;
+  --mx-blue: #5C93F2;
+  --mx-blue-soft: #16273F;
+
+  --mx-danger: #F0716A;
+  --mx-danger-soft: #3A1B1C;
+  --mx-warning: #E3B04B;
+  --mx-warning-soft: #362A11;
+  --mx-success: #2DBE8B;
+  --mx-success-soft: #133428;
+
+  --mx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --mx-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --mx-shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  --mx-focus-ring: #5C93F2;
+
+  /* Dark theme can take a stronger tint for moody depth without losing the video. */
+  --mx-hero-video-tint: 0.22;
+}
+
+[data-theme="warm"] {
+  color-scheme: light;
+
+  --mx-bg: #FBF3E9;
+  --mx-bg-canvas: #F6EADA;
+  --mx-surface: #FFFDF9;
+  --mx-surface-raised: #FFFFFF;
+  --mx-surface-sunken: #F6EBDC;
+
+  --mx-ink: #2C2013;
+  --mx-ink-soft: #5B4A36;
+  --mx-ink-muted: #85735D;
+  --mx-ink-inverse: #FDF6EC;
+
+  --mx-border: #ECD9BE;
+  --mx-border-strong: #DEC29A;
+
+  --mx-green: #178C5A;
+  --mx-green-strong: #106B44;
+  --mx-green-soft: #E4F1E6;
+  --mx-purple: #8A5FD6;
+  --mx-purple-soft: #F1E9FB;
+  --mx-blue: #2E71D6;
+  --mx-blue-soft: #EAF0FC;
+
+  --mx-danger: #D65A3A;
+  --mx-danger-soft: #FBE7DE;
+  --mx-warning: #C1801E;
+  --mx-warning-soft: #FCEFD9;
+  --mx-success: #178C5A;
+  --mx-success-soft: #E4F1E6;
+
+  --mx-shadow-sm: 0 1px 2px rgba(44, 32, 19, 0.08);
+  --mx-shadow-md: 0 6px 18px rgba(44, 32, 19, 0.1);
+  --mx-shadow-lg: 0 14px 34px rgba(44, 32, 19, 0.14);
+
+  --mx-focus-ring: #C1801E;
+
+  /* Warm theme sits closer to light — keep the tint gentle. */
+  --mx-hero-video-tint: 0.1;
+}
+
+/* Map tokens into Tailwind v4 theme so utilities like bg-mx-surface work */
+@theme inline {
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-mx-bg: var(--mx-bg);
+  --color-mx-bg-canvas: var(--mx-bg-canvas);
+  --color-mx-surface: var(--mx-surface);
+  --color-mx-surface-raised: var(--mx-surface-raised);
+  --color-mx-surface-sunken: var(--mx-surface-sunken);
+
+  --color-mx-ink: var(--mx-ink);
+  --color-mx-ink-soft: var(--mx-ink-soft);
+  --color-mx-ink-muted: var(--mx-ink-muted);
+  --color-mx-ink-inverse: var(--mx-ink-inverse);
+
+  --color-mx-border: var(--mx-border);
+  --color-mx-border-strong: var(--mx-border-strong);
+
+  --color-mx-green: var(--mx-green);
+  --color-mx-green-strong: var(--mx-green-strong);
+  --color-mx-green-soft: var(--mx-green-soft);
+  --color-mx-purple: var(--mx-purple);
+  --color-mx-purple-soft: var(--mx-purple-soft);
+  --color-mx-blue: var(--mx-blue);
+  --color-mx-blue-soft: var(--mx-blue-soft);
+
+  --color-mx-danger: var(--mx-danger);
+  --color-mx-danger-soft: var(--mx-danger-soft);
+  --color-mx-warning: var(--mx-warning);
+  --color-mx-warning-soft: var(--mx-warning-soft);
+  --color-mx-success: var(--mx-success);
+  --color-mx-success-soft: var(--mx-success-soft);
+
+  --radius-mx-sm: 8px;
+  --radius-mx-md: 12px;
+  --radius-mx-lg: 16px;
+  --radius-mx-xl: 20px;
+
+  --shadow-mx-sm: var(--mx-shadow-sm);
+  --shadow-mx-md: var(--mx-shadow-md);
+  --shadow-mx-lg: var(--mx-shadow-lg);
+}
+
+* {
+  border-color: var(--mx-border);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--mx-bg);
+  color: var(--mx-ink);
+  font-family: var(--font-body);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+/* Visible, high-contrast focus ring everywhere — required for accessibility */
+:focus-visible {
+  outline: 2.5px solid var(--mx-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect users who have asked for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--mx-green-soft);
+  color: var(--mx-green-strong);
+}
+
+.mx-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.mx-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--mx-border-strong);
+  border-radius: 8px;
+}
+
+/* Skeleton loading shimmer — slow, quiet left-to-right gradient sweep.
+   Reduced-motion users get the global animation-duration override above,
+   which effectively freezes this into a plain static placeholder. */
+@keyframes mx-shimmer {
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 150% 0;
+  }
+}
+
+.mx-shimmer {
+  background-color: var(--mx-surface-sunken);
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    var(--mx-border-strong) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: mx-shimmer 2.4s ease-in-out infinite;
+  opacity: 0.55;
+}
+
+/* ============================================================
+   AMBIENT LIGHT LAYER
+   Very soft, fixed radial glows behind the dashboard main content —
+   healthcare-clinical, not neon. Two low-opacity blobs (green + blue/
+   purple) that sit behind everything via a negative z-index, never
+   intercept clicks, and read as a gentle wash rather than a visible
+   shape. Token-driven so it stays correct across light/dark/warm themes.
+   Apply to the scrolling <main> wrapper in PatientDashboardShell only —
+   not to every card, so it stays subtle. ============================ */
+.mx-ambient-layer {
+  position: relative;
+  isolation: isolate;
+}
+
+.mx-ambient-layer::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(560px 360px at 12% -8%, color-mix(in srgb, var(--mx-green) 14%, transparent), transparent 65%),
+    radial-gradient(520px 380px at 96% 18%, color-mix(in srgb, var(--mx-blue) 12%, transparent), transparent 65%),
+    radial-gradient(480px 420px at 70% 100%, color-mix(in srgb, var(--mx-purple) 9%, transparent), transparent 70%);
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mx-ambient-layer::before {
+    opacity: 0.5;
+  }
+}
+
+/* Soft glow behind a single hero/featured card (Health ID, AI Assistant
+   hero, etc.) — same token-driven radial approach, scoped to the card
+   itself via ::before so it never leaks onto neighboring content. */
+.mx-ambient-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.mx-ambient-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px 220px at 50% 0%,
+    color-mix(in srgb, var(--mx-purple) 10%, transparent),
+    transparent 70%
+  );
+}
