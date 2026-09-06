@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ChangeEvent, ReactNode } from "react";
+import type { ChangeEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Sparkles,

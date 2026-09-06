@@ -224,35 +224,6 @@ export function HealthSummaryStep({
     });
   };
 
-  const renderList = (
-    title: string,
-    items: string[],
-    emptyText = EMPTY_TEXT
-  ) => (
-    <Section
-      number={1}
-      title={title}
-      icon={ClipboardCheck}
-    >
-      {items.length > 0 ? (
-        <ul className="space-y-2 pl-5 text-sm leading-relaxed text-mx-ink-soft">
-          {items.map((item, index) => (
-            <li
-              key={`${title}-${index}`}
-              className="list-disc"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-sm text-mx-ink-muted">
-          {emptyText}
-        </p>
-      )}
-    </Section>
-  );
-
   return (
     <div className="flex min-h-full flex-col overflow-y-auto bg-mx-bg lg:h-full">
       <header className="sticky top-0 z-40 flex items-center justify-between gap-4 border-b border-mx-border bg-mx-surface-raised px-4 py-2.5 sm:px-6">

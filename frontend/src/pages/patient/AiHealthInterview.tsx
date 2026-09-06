@@ -325,15 +325,6 @@ export function AiHealthInterview({
         "{total}",
         String(TOTAL_QUESTIONS),
       );
-
-  const currentQuestion =
-    isCompleted
-      ? ""
-      : rounds.length === 0
-        ? ""
-        : "";
-
-
   // ==========================================================
   // ASSISTANT VOICE PLAYBACK
   // ==========================================================
