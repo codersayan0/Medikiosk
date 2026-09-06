@@ -82,13 +82,13 @@ export function AppRoutes() {
       {/* Role Selection gateway shown when the Navbar's Login button is clicked.
           It's a dedicated, minimal authentication gateway — no marketing
           Navbar/Footer — that routes to each role's existing login page. */}
-      <Route element={<RoleSelectPage mode="login" />} path="/login" />
+      <Route element={<RoleSelectPage />} path="/login" />
 
       {/* "Get Started" gateway — shown from every "Get Started" button across
           the marketing site (Navbar, Home hero/final CTA, Features hero/final
           CTA). Same dedicated screen as /login, but routes to each role's
           registration page and navigates in the same tab. */}
-      <Route element={<RoleSelectPage mode="register" />} path="/get-started" />
+      <Route element={<RoleSelectPage />} path="/get-started" />
 
       <Route element={<AuthLayout><PatientLoginPage /></AuthLayout>} path="/patient/login" />
       <Route element={<AuthLayout><PatientRegisterPage /></AuthLayout>} path="/patient/register" />
